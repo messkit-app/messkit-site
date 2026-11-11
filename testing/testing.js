@@ -239,7 +239,7 @@ function showOnly(ids) {
 
 function setWho() {
   if (!state.email) { show("who", false); return; }
-  $("who-text").textContent = `${state.email} · build ${displayBuild(state.build)}.`;
+  $("who-text").textContent = `${state.email} · build ${displayBuild(state.build)}`;
   show("who", true);
 }
 

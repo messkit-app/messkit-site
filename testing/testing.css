@@ -2,7 +2,8 @@
    same tokens, same cards; this adds the form controls and the check cards. */
 
 .wrap.testing { padding-top: 32px; }
-.who .link { margin-left: 8px; }
+.who .link { margin-right: 12px; }
+#who-text { margin-right: 12px; }
 .testing header { margin-bottom: 24px; }
 .testing h1 { margin-top: 24px; }
 
@@ -143,13 +144,15 @@ button:disabled { cursor: default; opacity: 0.5; }
 
 .answers {
   display: grid;
-  grid-template-columns: 1fr 1fr 1.3fr;
+  grid-template-columns: 1fr 1fr 1.6fr;
   gap: 8px;
   margin-top: 20px;
 }
 
 .answer {
-  padding: 10px 8px;
+  padding: 10px 4px;
+  font-size: 15px;
+  white-space: nowrap;
   border: 1px solid var(--border);
   background: var(--tile);
   color: var(--text);
