@@ -1,0 +1,174 @@
+/* The tester checklist page (messkit-app/messkit#535). Builds on /style.css:
+   same tokens, same cards; this adds the form controls and the check cards. */
+
+.wrap.testing { padding-top: 32px; }
+.who .link { margin-left: 8px; }
+.testing header { margin-bottom: 24px; }
+.testing h1 { margin-top: 24px; }
+
+[hidden] { display: none !important; }
+
+.who {
+  margin: 12px 0 0;
+  color: var(--secondary);
+  font-size: 15px;
+}
+
+.banner {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  margin: 0 -16px 16px;
+  padding: 12px 16px;
+  background: var(--green);
+  color: var(--on-green);
+  font-size: 15px;
+}
+
+label, .label {
+  display: block;
+  margin: 16px 0 6px;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.card h2 + label { margin-top: 0; }
+
+h3.label {
+  margin: 16px 0 4px;
+  color: var(--secondary);
+}
+
+.optional { font-weight: 400; color: var(--secondary); }
+
+input[type="email"], input[type="text"], textarea {
+  display: block;
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--cream);
+  color: var(--text);
+  /* 16px or more keeps iOS Safari from zooming into the field. */
+  font: inherit;
+  font-size: 17px;
+}
+
+textarea { resize: vertical; min-height: 3.2em; }
+
+input:focus, textarea:focus, button:focus-visible {
+  outline: 2px solid var(--green-tint);
+  outline-offset: 2px;
+}
+
+.hint { margin: 6px 0 0; color: var(--secondary); font-size: 15px; }
+
+button {
+  font: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:disabled { cursor: default; opacity: 0.5; }
+
+.primary, .secondary, .answer {
+  min-height: 48px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.primary {
+  margin-top: 20px;
+  border: 0;
+  background: var(--green);
+  color: var(--on-green);
+}
+
+.secondary {
+  border: 1px solid var(--border);
+  background: var(--tile);
+  color: var(--text);
+}
+
+.link {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--green-tint);
+  font-size: inherit;
+  text-decoration: underline;
+}
+
+.error {
+  margin: 12px 0 0;
+  color: #a32d2d;
+  font-size: 15px;
+}
+
+.card-error { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; }
+.card-error .secondary { min-height: 40px; padding: 6px 14px; font-size: 15px; }
+
+.checks { margin: 0; padding: 0; list-style: none; }
+
+.check { margin: 16px 0; padding: 20px; }
+.check p { margin: 0; }
+
+.area {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: #e1f5ee;
+  color: #04342c;
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.steps, .expected { white-space: pre-line; overflow-wrap: anywhere; }
+
+.extras { margin-top: 4px; }
+
+.shot { margin-top: 12px; }
+.shot-preview { margin: 0; }
+.shot-preview img {
+  display: block;
+  max-width: 100%;
+  max-height: 240px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.shot-preview figcaption { margin-top: 6px; color: var(--secondary); font-size: 15px; }
+
+.answers {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.3fr;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.answer {
+  padding: 10px 8px;
+  border: 1px solid var(--border);
+  background: var(--tile);
+  color: var(--text);
+}
+
+.answer.chosen { border-color: var(--green); background: var(--green); color: var(--on-green); }
+.answer[data-status="fail"].chosen { border-color: #a32d2d; background: #a32d2d; color: #fff; }
+
+.saved { margin-top: 12px; color: var(--secondary); font-size: 15px; }
+
+.check.answered { border-color: var(--green-tint); }
+
+.done h2 { margin: 0 0 8px; }
+
+@media (prefers-color-scheme: dark) {
+  .area { background: #04342c; color: #9fe1cb; }
+  .banner { background: #04342c; color: #9fe1cb; }
+  .primary { background: var(--mint); color: #04342c; }
+  .answer.chosen { border-color: var(--mint); background: var(--mint); color: #04342c; }
+  .answer[data-status="fail"].chosen { border-color: #f09595; background: #f09595; color: #2c0b0b; }
+  .error { color: #f09595; }
+}
