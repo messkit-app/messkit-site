@@ -77,9 +77,11 @@ function rememberAnswer(build, check, status) {
 }
 
 // "0.2.14 (52)", as TestFlight shows it, becomes "0.2.14+52", as pubspec has it.
+// So does "0.2.14 52": a link's ?build=0.2.14+52 reads back with the + as a
+// space (form encoding), and must not run the two numbers together.
 function normaliseBuild(raw) {
   const s = String(raw || "").trim();
-  const m = /^v?(\d+(?:\.\d+)*)\s*\(\s*(\d+)\s*\)$/.exec(s);
+  const m = /^v?(\d+(?:\.\d+)*)\s*\(\s*(\d+)\s*\)$/.exec(s) || /^v?(\d+(?:\.\d+)*)\s+(\d+)$/.exec(s);
   const b = m ? `${m[1]}+${m[2]}` : s.replace(/\s+/g, "");
   return BUILD.test(b) ? b : null;
 }
