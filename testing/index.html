@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' blob: data:; connect-src https://jqggxppcqmnkgclawvqe.supabase.co; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex, nofollow">
+<title>Tester checks — Messkit</title>
+<meta name="description" content="The checklist for people testing Messkit Dev through TestFlight.">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/testing/testing.css">
+<script src="/testing/testing.js" defer></script>
+</head>
+<body>
+<div class="wrap testing">
+
+<header>
+  <a class="mark" href="/">Messkit</a>
+  <h1 id="title">Tester checks</h1>
+  <p class="lede" id="lede">For people testing Messkit Dev through TestFlight.</p>
+  <p class="who" id="who" hidden>
+    <span id="who-text"></span>
+    <button type="button" class="link" id="not-you">Not you?</button>
+    <button type="button" class="link" id="change-build">Another build?</button>
+  </p>
+</header>
+
+<main>
+  <noscript>
+    <div class="card"><p>This page needs JavaScript to load your checks.</p></div>
+  </noscript>
+
+  <div class="banner" id="offline" role="status" hidden>You&rsquo;re offline. Answers can&rsquo;t be saved until you&rsquo;re back online.</div>
+
+  <!-- First visit: who is testing, on which build. -->
+  <form class="card" id="signin" hidden novalidate>
+    <h2>Who&rsquo;s testing?</h2>
+    <label for="email">The email you use for TestFlight</label>
+    <input type="email" id="email" autocomplete="email" inputmode="email" autocapitalize="off" spellcheck="false" required>
+    <label for="build">The Messkit Dev build you&rsquo;re testing</label>
+    <input type="text" id="build" autocapitalize="off" spellcheck="false" placeholder="0.2.14 (52)" required>
+    <p class="hint">TestFlight shows it under Messkit Dev, as a version and a build number.</p>
+    <p class="error" id="signin-error" role="alert" hidden></p>
+    <button type="submit" class="primary" id="signin-go">Show my checks</button>
+  </form>
+
+  <div class="card" id="loading" hidden><p>Loading your checks&hellip;</p></div>
+
+  <!-- Loading the list failed. -->
+  <div class="card" id="load-error" hidden>
+    <h2 id="load-error-title">Couldn&rsquo;t load your checks</h2>
+    <p id="load-error-text"></p>
+    <button type="button" class="primary" id="load-retry">Try again</button>
+  </div>
+
+  <div class="card done" id="done" hidden>
+    <h2>All done for this build. Thank you.</h2>
+    <p>New checks come with new builds. When TestFlight sends you one, open this page again.</p>
+  </div>
+
+  <ol class="checks" id="checks"></ol>
+</main>
+
+<template id="check-template">
+  <li class="card check">
+    <p class="area"></p>
+    <h3 class="label">What to do</h3>
+    <p class="steps"></p>
+    <h3 class="label">What you should see</h3>
+    <p class="expected"></p>
+
+    <div class="extras">
+      <label class="label note-label">Note <span class="optional">(optional)</span></label>
+      <textarea class="note" rows="2" maxlength="2000" placeholder="What happened, if it wasn&rsquo;t what you expected"></textarea>
+      <div class="shot">
+        <input type="file" class="shot-input" accept="image/*" hidden>
+        <button type="button" class="secondary shot-add">Add screenshot</button>
+        <figure class="shot-preview" hidden>
+          <img alt="Your screenshot">
+          <figcaption><span class="shot-status"></span> <button type="button" class="link shot-remove">Remove</button></figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="answers" role="group" aria-label="Result">
+      <button type="button" class="answer" data-status="pass">Pass</button>
+      <button type="button" class="answer" data-status="fail">Fail</button>
+      <button type="button" class="answer" data-status="skip">Couldn&rsquo;t try</button>
+    </div>
+    <p class="saved" role="status" hidden></p>
+    <div class="error card-error" role="alert" hidden>
+      <span class="card-error-text"></span>
+      <button type="button" class="secondary card-retry">Try again</button>
+    </div>
+  </li>
+</template>
+
+<footer>
+  <p><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></p>
+  <p>This page remembers your email on this phone only, and sets no cookies.</p>
+</footer>
+
+</div>
+</body>
+</html>
